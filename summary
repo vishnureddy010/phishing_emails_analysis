@@ -1,0 +1,33 @@
+Phishing Email Analysis Repository - Summary
+
+This repository contains a professional analysis of a phishing email, including technical findings, indicators of compromise, and recommended remediation steps.
+
+Summary
+
+Email Subject: Want to meet hot women?
+
+Sender (displayed): Your perfect woman registration@and.co.uk
+
+Envelope/Return-Path: no-replay@esetupkeys.xyz
+
+Originating IP: 96.126.118.161 (ahlens.xyz)
+
+Authentication: SPF SoftFail, DKIM none, DMARC fail
+
+Spam Indicators: SCL 5, BCL 6
+
+Content: HTML with tracking pixels, redirect links, and external images; unusual MIME type and encoding
+
+Verdict: Malicious / High Risk — likely phishing and spam.
+
+Recommended Actions:
+
+Quarantine/delete the email.
+
+Block the sending IP and domains.
+
+Add detection rules for similar messages.
+
+Notify users not to click links or reply.
+
+Report the sample to email security providers.
