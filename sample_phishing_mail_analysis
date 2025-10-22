@@ -1,0 +1,72 @@
+# Phishing Email Analysis Report
+
+
+**Filename:** suspicious_email.eml
+**Date Analyzed:** 22 Oct 2025
+**Analyst:** [Your Name]
+
+
+---
+
+
+## 1. Quick Verdict
+**Malicious / High Risk** — likely phishing and spam.
+
+
+## 2. Technical Findings
+
+
+### Authentication Results
+- SPF: SoftFail for `esetupkeys.xyz` (IP 96.126.118.161)
+- DKIM: None
+- DMARC: Fail for `header.from=and.co.uk`
+
+
+### Header Mismatches / Spoofing
+- `From:` display: `Your perfect woman <registration@and.co.uk>`
+- Envelope / Return-Path: `no-replay@esetupkeys.xyz`
+- Sending IP: 96.126.118.161 (ahlens.xyz)
+
+
+### Spam/Filtering Meta
+- SCL (Spam Confidence Level): 5 — high likelihood of spam
+- BCL (Bulk Confidence Level): 6
+
+
+## 3. Content Analysis
+- Subject: `Want to meet hot women?`
+- HTML body contains:
+- Tracking pixels: `http://laredouteshop.com/op/...`
+- Redirect links via `duckduckgo.com/cl/...` and `duckduckgo.com/oop/...`
+- Publicly hosted images on `imgur.com`
+- Mismatched domains between From and envelope
+- Unusual MIME type (`multipart/form-data`) and `Hexa` encoding
+
+
+## 4. Indicators of Compromise (IOCs)
+
+
+**IPs**
+96.126.118.161
+**Domains**
+esetupkeys.xyz ahlens.xyz laredouteshop.com duckduckgo.com imgur.com and.co.uk bounce.cpg.gp.digital email.nexxt.com
+**Message ID**
+SvkqTRll.Nlf6.leQWXv.SvkqTRll@email.nexxt.com
+
+**Subject**
+Want to meet hot women?
+
+## 5. Recommended Actions
+1. Quarantine/delete email from all mailboxes.
+2. Block sending IP and domains in mail gateway.
+3. Add detection rules for similar subjects, senders, and URLs.
+4. Notify users: do not click links or reply to emails with these subjects.
+5. If a user clicked a link, isolate host and run malware scan.
+6. Report sample to Microsoft/Office365 for anti-spam tuning.
+
+
+## 6. Detection / Extraction Regex
+- Extract URLs: `(?i)href\s*=\s*["']([^"']+)["']`
+- Extract images: `(?i)<img[^>]+src=["']([^"']+)["']`
+- Search logs for Message-ID: `SvkqTRll\.Nlf6\.leQWXv\.SvkqTRll@email\.nexxt\.com`
+- Search logs for sending IP: `96\.126\.118\.161`
